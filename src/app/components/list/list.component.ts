@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
 
   @Input() items!: any[];
   @Input() listTitle!: string;
@@ -13,7 +13,4 @@ export class ListComponent implements OnInit {
   @Input() itemSubtitle!: string;
 
   constructor() { }
-  
-  ngOnInit(): void { }
-
 }
