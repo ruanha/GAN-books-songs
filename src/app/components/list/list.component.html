@@ -1,0 +1,12 @@
+<h1>{{listTitle}}</h1>
+<div fxLayout="row" fxLayoutWrap>
+    <app-card 
+        *ngFor="let item of items"
+        fxFlex.lg="33"
+        fxFlex.lt-lg="50"
+        fxFlex.xs="100"
+        [title]="item[itemTitle]"
+        [subtitle]="item[itemSubtitle]"
+        [img_url]="item.img_url">
+    </app-card>
+</div>
