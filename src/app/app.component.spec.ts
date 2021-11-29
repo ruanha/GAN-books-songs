@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('GAN-store');
   });
 
-  it('should render title', () => {
+  it('should render logo', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('GAN-store app is running!');
+    expect(compiled.querySelector('#site_logo')?.id).toContain('site_logo');
   });
 });
