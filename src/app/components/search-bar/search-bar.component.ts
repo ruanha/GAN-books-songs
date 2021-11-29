@@ -119,7 +119,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   setUrlId(value: any) {
-    const queryParams: Params = { title: value.title, artist: value.artist };
+    const queryParams: Params = { title: value.title, artist: value.artist, author: value.author };
     this.router.navigate(
       [],
       {
