@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  myControl = new FormControl();
+  inputControl = new FormControl();
   @Input() label = 'Search';
   books: any[] = [];
   music: Music[] = [];
@@ -38,14 +38,13 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
     this.getBooks();
     this.getSongs();
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.inputControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value)),
     );
     this.activatedRoute.queryParamMap
       .subscribe((params) => {
         this.paramsObject = { ...params.keys, ...params };
-        console.log(this.paramsObject);
       }
     );
     this.initSearchForm()
@@ -77,7 +76,7 @@ export class SearchBarComponent implements OnInit {
       author: this.paramsObject.params?.author
     }
     if (option.title) {
-      this.myControl.setValue(
+      this.inputControl.setValue(
         this.stringRepresentation(option)
       );
     }
@@ -85,6 +84,8 @@ export class SearchBarComponent implements OnInit {
 
   categoryChange() {
     this.setUrlCategory(this.selected)
+    var urlParams = this.paramsObject.params
+    this.setUrlId(urlParams);
   }
 
   selectionChange(value: any) {
@@ -119,7 +120,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   setUrlId(value: any) {
-    const queryParams: Params = { title: value.title, artist: value.artist, author: value.author };
+    const queryParams: Params = { category: this.selected, title: value.title, artist: value.artist, author: value.author };
     this.router.navigate(
       [],
       {
